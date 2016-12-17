@@ -9,3 +9,6 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+
+# Retrolambda
+-dontwarn java.lang.invoke.*

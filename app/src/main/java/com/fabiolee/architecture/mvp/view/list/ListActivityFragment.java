@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view;
+package com.fabiolee.architecture.mvp.view.list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

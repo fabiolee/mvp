@@ -3,8 +3,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:2.2.1"
-        classpath "io.realm:realm-gradle-plugin:2.0.2"
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'io.realm:realm-gradle-plugin:2.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }
 
@@ -22,14 +23,16 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 15
-    targetSdkVersion = 24
-    compileSdkVersion = 24
-    buildToolsVersion = '24.0.3'
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
 
     // App dependencies
+    daggerVersion = '2.8'
     espressoVersion = '2.2.2'
+    guavaVersion = '20.0'
     junitVersion = '4.12'
     reactivexVersion = '1.2.1'
     retrofitVersion = '2.1.0'
-    supportLibraryVersion = '24.2.1'
+    supportLibraryVersion = '25.1.0'
 }

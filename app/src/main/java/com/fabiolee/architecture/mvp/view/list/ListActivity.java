@@ -1,17 +1,30 @@
-package com.fabiolee.architecture.mvp.view;
+package com.fabiolee.architecture.mvp.view.list;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.fabiolee.architecture.mvp.R;
+import com.fabiolee.architecture.mvp.injection.AppApplication;
+import com.fabiolee.architecture.mvp.model.remote.GitHubService;
+import com.fabiolee.architecture.mvp.view.core.AbstractActivity;
 
-public class ListActivity extends AppCompatActivity {
+import javax.inject.Inject;
+
+public class ListActivity extends AbstractActivity {
+    @Inject
+    GitHubService gitHubService;
+
+    @Override
+    protected void injectDependency() {
+        DaggerListComponent.builder()
+                .appComponent(AppApplication.get(this).getAppComponent())
+                .build()
+                .inject(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +34,8 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
     }
 
     @Override
