@@ -23,7 +23,7 @@ public class RealmHelper {
                 .build());
     }
 
-    public List<UserBean> queryUsers() {
+    public List<UserBean> queryUserList() {
         RealmResults<UserBean> result = realm.where(UserBean.class).findAllSorted("id");
         return realm.copyFromRealm(result);
     }

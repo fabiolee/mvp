@@ -14,5 +14,5 @@ public interface GitHubService {
     String BASE_URL = "https://api.github.com/";
 
     @GET("users")
-    Observable<List<UserBean>> getUsers();
+    Observable<List<UserBean>> getUserList();
 }
