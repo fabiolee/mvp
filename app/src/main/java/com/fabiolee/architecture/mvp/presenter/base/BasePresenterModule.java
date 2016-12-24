@@ -17,7 +17,7 @@ public abstract class BasePresenterModule<V extends BaseView> {
     }
 
     @Provides
-    V provideView() {
+    public V provideView() {
         return view;
     }
 }
