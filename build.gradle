@@ -30,7 +30,6 @@ ext {
     // App dependencies
     daggerVersion = '2.8'
     espressoVersion = '2.2.2'
-    guavaVersion = '20.0'
     junitVersion = '4.12'
     reactivexVersion = '1.2.1'
     retrofitVersion = '2.1.0'

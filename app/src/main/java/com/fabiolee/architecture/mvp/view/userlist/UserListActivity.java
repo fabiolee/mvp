@@ -57,8 +57,4 @@ public class UserListActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    protected void injectDependency() {
-    }
 }
