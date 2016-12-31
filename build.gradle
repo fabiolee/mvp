@@ -4,7 +4,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'io.realm:realm-gradle-plugin:2.2.1'
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }
@@ -28,10 +27,13 @@ ext {
     buildToolsVersion = '25.0.2'
 
     // App dependencies
+    autoValueVersion = '1.2'
+    autoValueGsonVersion = '0.4.5'
     daggerVersion = '2.8'
     espressoVersion = '2.2.2'
     junitVersion = '4.12'
-    reactivexVersion = '1.2.1'
     retrofitVersion = '2.1.0'
+    rxandroidVersion = '1.2.1'
+    rxjavaVersion = '1.2.4'
     supportLibraryVersion = '25.1.0'
 }

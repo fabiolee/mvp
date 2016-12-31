@@ -1,7 +1,11 @@
 package com.fabiolee.architecture.mvp.model.remote;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
@@ -16,16 +20,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author fabiolee
  */
 public class RetrofitHelper {
+    @Inject
+    public RetrofitHelper() {
+    }
+
     public GitHubService newGitHubService() {
         OkHttpClient client = getSafeOkHttpClientBuilder()
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapterFactory(RetrofitGsonTypeAdapterFactory.create())
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(GitHubService.BASE_URL)
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(GitHubService.class);

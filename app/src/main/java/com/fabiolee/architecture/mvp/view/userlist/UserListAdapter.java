@@ -32,7 +32,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
     @Override
     public void onBindViewHolder(UserListViewHolder holder, int position) {
         UserBean user = userList.get(position);
-        holder.loginTextView.setText(user.login);
+        holder.loginTextView.setText(user.login());
     }
 
     @Override

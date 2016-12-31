@@ -2,7 +2,6 @@ package com.fabiolee.architecture.mvp.injection.module;
 
 import android.content.Context;
 
-import com.fabiolee.architecture.mvp.model.local.RealmHelper;
 import com.fabiolee.architecture.mvp.model.remote.GitHubService;
 import com.fabiolee.architecture.mvp.model.remote.RetrofitHelper;
 
@@ -23,15 +22,5 @@ public class AppModule {
     @Provides
     GitHubService provideGitHubService(RetrofitHelper retrofitHelper) {
         return retrofitHelper.newGitHubService();
-    }
-
-    @Provides
-    RealmHelper provideRealmHelper() {
-        return new RealmHelper();
-    }
-
-    @Provides
-    RetrofitHelper provideRetrofitHelper() {
-        return new RetrofitHelper();
     }
 }
