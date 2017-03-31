@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.model.local;
+package com.fabiolee.architecture.mvp.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;

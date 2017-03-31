@@ -1,7 +1,7 @@
 package com.fabiolee.architecture.mvp.injection.component;
 
 import com.fabiolee.architecture.mvp.injection.module.AppModule;
-import com.fabiolee.architecture.mvp.model.remote.GitHubService;
+import com.fabiolee.architecture.mvp.data.remote.GitHubService;
 
 import javax.inject.Singleton;
 

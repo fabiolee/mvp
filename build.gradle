@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }
@@ -35,5 +35,5 @@ ext {
     retrofitVersion = '2.1.0'
     rxandroidVersion = '1.2.1'
     rxjavaVersion = '1.2.4'
-    supportLibraryVersion = '25.1.0'
+    supportLibraryVersion = '25.3.1'
 }

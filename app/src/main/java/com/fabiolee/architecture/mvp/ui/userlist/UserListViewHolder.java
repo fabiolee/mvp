@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

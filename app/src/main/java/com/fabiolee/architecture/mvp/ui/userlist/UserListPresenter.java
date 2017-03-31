@@ -1,11 +1,10 @@
-package com.fabiolee.architecture.mvp.presenter.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.util.Log;
 
-import com.fabiolee.architecture.mvp.model.bean.UserBean;
-import com.fabiolee.architecture.mvp.model.remote.GitHubService;
-import com.fabiolee.architecture.mvp.presenter.base.BasePresenter;
-import com.fabiolee.architecture.mvp.view.userlist.UserListView;
+import com.fabiolee.architecture.mvp.data.model.UserModel;
+import com.fabiolee.architecture.mvp.data.remote.GitHubService;
+import com.fabiolee.architecture.mvp.ui.base.BasePresenter;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class UserListPresenter extends BasePresenter<UserListView> {
         registerSubscription(gitHubService.getUserList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<UserBean>>() {
+                .subscribe(new Subscriber<List<UserModel>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -44,7 +43,7 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                     }
 
                     @Override
-                    public void onNext(List<UserBean> userList) {
+                    public void onNext(List<UserModel> userList) {
                         if (isViewAttached()) {
                             getView().updateUserList(userList);
                         }

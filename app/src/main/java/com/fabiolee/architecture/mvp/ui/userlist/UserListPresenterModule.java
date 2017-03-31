@@ -1,7 +1,6 @@
-package com.fabiolee.architecture.mvp.presenter.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
-import com.fabiolee.architecture.mvp.presenter.base.BasePresenterModule;
-import com.fabiolee.architecture.mvp.view.userlist.UserListView;
+import com.fabiolee.architecture.mvp.ui.base.BasePresenterModule;
 
 import dagger.Module;
 

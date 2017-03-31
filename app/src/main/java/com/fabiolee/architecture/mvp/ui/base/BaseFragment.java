@@ -1,10 +1,8 @@
-package com.fabiolee.architecture.mvp.view.base;
+package com.fabiolee.architecture.mvp.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
-import com.fabiolee.architecture.mvp.presenter.base.BasePresenter;
 
 /**
  * @author fabiolee

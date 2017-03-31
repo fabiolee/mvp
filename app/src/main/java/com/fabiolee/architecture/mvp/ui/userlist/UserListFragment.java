@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 
 import com.fabiolee.architecture.mvp.R;
 import com.fabiolee.architecture.mvp.injection.AppApplication;
-import com.fabiolee.architecture.mvp.model.bean.UserBean;
-import com.fabiolee.architecture.mvp.presenter.userlist.UserListPresenter;
-import com.fabiolee.architecture.mvp.presenter.userlist.UserListPresenterModule;
-import com.fabiolee.architecture.mvp.view.base.BaseFragment;
+import com.fabiolee.architecture.mvp.data.model.UserModel;
+import com.fabiolee.architecture.mvp.ui.base.BaseFragment;
 
 import java.util.Collections;
 import java.util.List;
@@ -64,7 +62,7 @@ public class UserListFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
-    public void updateUserList(List<UserBean> userList) {
+    public void updateUserList(List<UserModel> userList) {
         userListAdapter.setUserList(userList);
     }
 

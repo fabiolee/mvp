@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fabiolee.architecture.mvp.R;
-import com.fabiolee.architecture.mvp.view.base.BaseActivity;
+import com.fabiolee.architecture.mvp.ui.base.BaseActivity;
 
 public class UserListActivity extends BaseActivity {
     private UserListFragment fragment;

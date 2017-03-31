@@ -1,8 +1,6 @@
-package com.fabiolee.architecture.mvp.presenter.base;
+package com.fabiolee.architecture.mvp.ui.base;
 
 import android.support.annotation.NonNull;
-
-import com.fabiolee.architecture.mvp.view.base.BaseView;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

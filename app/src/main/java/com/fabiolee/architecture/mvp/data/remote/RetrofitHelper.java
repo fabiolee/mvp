@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.model.remote;
+package com.fabiolee.architecture.mvp.data.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

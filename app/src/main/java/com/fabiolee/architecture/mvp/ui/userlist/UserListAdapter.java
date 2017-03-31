@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fabiolee.architecture.mvp.R;
-import com.fabiolee.architecture.mvp.model.bean.UserBean;
+import com.fabiolee.architecture.mvp.data.model.UserModel;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  * @author fabiolee
  */
 public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
-    private List<UserBean> userList;
+    private List<UserModel> userList;
 
-    public UserListAdapter(List<UserBean> userList) {
+    public UserListAdapter(List<UserModel> userList) {
         this.userList = userList;
     }
 
@@ -31,7 +31,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
 
     @Override
     public void onBindViewHolder(UserListViewHolder holder, int position) {
-        UserBean user = userList.get(position);
+        UserModel user = userList.get(position);
         holder.loginTextView.setText(user.login());
     }
 
@@ -40,7 +40,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
         return userList.size();
     }
 
-    public void setUserList(List<UserBean> userList) {
+    public void setUserList(List<UserModel> userList) {
         this.userList = userList;
         notifyDataSetChanged();
     }

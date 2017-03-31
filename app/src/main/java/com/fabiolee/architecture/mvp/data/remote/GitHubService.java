@@ -1,6 +1,6 @@
-package com.fabiolee.architecture.mvp.model.remote;
+package com.fabiolee.architecture.mvp.data.remote;
 
-import com.fabiolee.architecture.mvp.model.bean.UserBean;
+import com.fabiolee.architecture.mvp.data.model.UserModel;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface GitHubService {
     String BASE_URL = "https://api.github.com/";
 
     @GET("users")
-    Observable<List<UserBean>> getUserList();
+    Observable<List<UserModel>> getUserList();
 }

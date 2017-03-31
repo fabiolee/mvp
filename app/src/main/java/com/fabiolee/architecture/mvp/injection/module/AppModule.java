@@ -2,8 +2,8 @@ package com.fabiolee.architecture.mvp.injection.module;
 
 import android.content.Context;
 
-import com.fabiolee.architecture.mvp.model.remote.GitHubService;
-import com.fabiolee.architecture.mvp.model.remote.RetrofitHelper;
+import com.fabiolee.architecture.mvp.data.remote.GitHubService;
+import com.fabiolee.architecture.mvp.data.remote.RetrofitHelper;
 
 import dagger.Module;
 import dagger.Provides;

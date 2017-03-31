@@ -1,4 +1,4 @@
-package com.fabiolee.architecture.mvp.view.base;
+package com.fabiolee.architecture.mvp.ui.base;
 
 /**
  * @author fabiolee

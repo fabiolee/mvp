@@ -1,8 +1,7 @@
-package com.fabiolee.architecture.mvp.view.userlist;
+package com.fabiolee.architecture.mvp.ui.userlist;
 
 import com.fabiolee.architecture.mvp.injection.component.AppComponent;
 import com.fabiolee.architecture.mvp.injection.scope.FragmentScope;
-import com.fabiolee.architecture.mvp.presenter.userlist.UserListPresenterModule;
 
 import dagger.Component;
 
