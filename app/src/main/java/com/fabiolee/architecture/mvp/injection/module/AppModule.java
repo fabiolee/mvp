@@ -1,5 +1,6 @@
 package com.fabiolee.architecture.mvp.injection.module;
 
+import android.content.ContentResolver;
 import android.content.Context;
 
 import com.fabiolee.architecture.mvp.data.remote.GitHubService;
@@ -17,6 +18,16 @@ public class AppModule {
 
     public AppModule(Context context) {
         this.context = context;
+    }
+
+    @Provides
+    Context provideContext() {
+        return context;
+    }
+
+    @Provides
+    ContentResolver provideContentResolver() {
+        return context.getContentResolver();
     }
 
     @Provides

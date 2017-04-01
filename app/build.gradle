@@ -22,10 +22,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    applicationVariants.all { variant ->
-        variant.buildConfigField "String", "CONTENT_AUTHORITY", "\"${variant.applicationId}\""
-        variant.resValue 'string', 'content_authority', "${variant.applicationId}"
-    }
 }
 
 dependencies {
@@ -39,6 +35,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion"
     compile "io.reactivex:rxandroid:$rootProject.ext.rxandroidVersion"
     compile "io.reactivex:rxjava:$rootProject.ext.rxjavaVersion"
     provided "com.google.auto.value:auto-value:$rootProject.ext.autoValueVersion"

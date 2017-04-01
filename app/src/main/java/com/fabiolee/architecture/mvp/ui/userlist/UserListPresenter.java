@@ -2,6 +2,7 @@ package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.util.Log;
 
+import com.fabiolee.architecture.mvp.data.local.SqlBriteHelper;
 import com.fabiolee.architecture.mvp.data.model.UserModel;
 import com.fabiolee.architecture.mvp.data.remote.GitHubService;
 import com.fabiolee.architecture.mvp.ui.base.BasePresenter;
@@ -10,8 +11,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -20,16 +23,18 @@ import rx.schedulers.Schedulers;
 public class UserListPresenter extends BasePresenter<UserListView> {
     private static final String TAG = UserListPresenter.class.getSimpleName();
 
-    private GitHubService gitHubService;
+    private final GitHubService gitHubService;
+    private final SqlBriteHelper sqlBriteHelper;
 
     @Inject
-    UserListPresenter(UserListView view, GitHubService gitHubService) {
+    UserListPresenter(UserListView view, GitHubService gitHubService, SqlBriteHelper sqlBriteHelper) {
         super(view);
         this.gitHubService = gitHubService;
+        this.sqlBriteHelper = sqlBriteHelper;
     }
 
     public void loadUserList() {
-        registerSubscription(gitHubService.getUserList()
+        registerSubscription(loadUserListAsObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<UserModel>>() {
@@ -49,5 +54,15 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                         }
                     }
                 }));
+    }
+
+    private Observable<List<UserModel>> loadUserListAsObservable() {
+        return gitHubService.getUserList()
+                .concatMap(new Func1<List<UserModel>, Observable<List<UserModel>>>() {
+                    @Override
+                    public Observable<List<UserModel>> call(List<UserModel> userList) {
+                        return sqlBriteHelper.setUserList(userList);
+                    }
+                });
     }
 }

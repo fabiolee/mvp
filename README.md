@@ -14,3 +14,4 @@ Android MVP Architecture
 * [Dagger 2](https://google.github.io/dagger/)
 * [Retrofit 2](http://square.github.io/retrofit/)
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) & [RxJava](https://github.com/ReactiveX/RxJava)
+* [SQLBrite](https://github.com/square/sqlbrite)

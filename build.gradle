@@ -35,5 +35,6 @@ ext {
     retrofitVersion = '2.1.0'
     rxandroidVersion = '1.2.1'
     rxjavaVersion = '1.2.4'
+    sqlbriteVersion = '1.1.1'
     supportLibraryVersion = '25.3.1'
 }
