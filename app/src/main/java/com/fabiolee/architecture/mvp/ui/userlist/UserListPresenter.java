@@ -3,7 +3,7 @@ package com.fabiolee.architecture.mvp.ui.userlist;
 import android.util.Log;
 
 import com.fabiolee.architecture.mvp.data.local.SqlBriteHelper;
-import com.fabiolee.architecture.mvp.data.model.UserModel;
+import com.fabiolee.architecture.mvp.data.model.User;
 import com.fabiolee.architecture.mvp.data.remote.GitHubService;
 import com.fabiolee.architecture.mvp.ui.base.BasePresenter;
 
@@ -37,7 +37,7 @@ public class UserListPresenter extends BasePresenter<UserListView> {
         registerSubscription(loadUserListAsObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<UserModel>>() {
+                .subscribe(new Subscriber<List<User>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -48,7 +48,7 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                     }
 
                     @Override
-                    public void onNext(List<UserModel> userList) {
+                    public void onNext(List<User> userList) {
                         if (isViewAttached()) {
                             getView().updateUserList(userList);
                         }
@@ -56,11 +56,11 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                 }));
     }
 
-    private Observable<List<UserModel>> loadUserListAsObservable() {
+    private Observable<List<User>> loadUserListAsObservable() {
         return gitHubService.getUserList()
-                .concatMap(new Func1<List<UserModel>, Observable<List<UserModel>>>() {
+                .concatMap(new Func1<List<User>, Observable<List<User>>>() {
                     @Override
-                    public Observable<List<UserModel>> call(List<UserModel> userList) {
+                    public Observable<List<User>> call(List<User> userList) {
                         return sqlBriteHelper.setUserList(userList);
                     }
                 });

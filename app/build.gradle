@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.squareup.sqldelight'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {

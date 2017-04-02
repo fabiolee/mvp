@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fabiolee.architecture.mvp.R;
-import com.fabiolee.architecture.mvp.data.model.UserModel;
+import com.fabiolee.architecture.mvp.data.model.User;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  * @author fabiolee
  */
 public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
-    private List<UserModel> userList;
+    private List<User> userList;
 
-    public UserListAdapter(List<UserModel> userList) {
+    public UserListAdapter(List<User> userList) {
         this.userList = userList;
     }
 
@@ -31,7 +31,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
 
     @Override
     public void onBindViewHolder(UserListViewHolder holder, int position) {
-        UserModel user = userList.get(position);
+        User user = userList.get(position);
         holder.loginTextView.setText(user.login());
     }
 
@@ -40,7 +40,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
         return userList.size();
     }
 
-    public void setUserList(List<UserModel> userList) {
+    public void setUserList(List<User> userList) {
         this.userList = userList;
         notifyDataSetChanged();
     }

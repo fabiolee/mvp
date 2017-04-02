@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS user (
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    login TEXT NOT NULL,
+    id INTEGER NOT NULL,
+    avatarUrl TEXT,
+    UNIQUE (login) ON CONFLICT REPLACE
+);
+
+drop_table:
+DROP TABLE IF EXISTS user;
+
+selectAll:
+SELECT *
+FROM user;
+
+insertRow:
+INSERT INTO user(login, id, avatarUrl)
+VALUES (?, ?, ?);

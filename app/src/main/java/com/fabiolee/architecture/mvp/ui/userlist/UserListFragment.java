@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fabiolee.architecture.mvp.R;
+import com.fabiolee.architecture.mvp.data.model.User;
 import com.fabiolee.architecture.mvp.injection.AppApplication;
-import com.fabiolee.architecture.mvp.data.model.UserModel;
 import com.fabiolee.architecture.mvp.ui.base.BaseFragment;
 
 import java.util.Collections;
@@ -62,7 +62,7 @@ public class UserListFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
-    public void updateUserList(List<UserModel> userList) {
+    public void updateUserList(List<User> userList) {
         userListAdapter.setUserList(userList);
     }
 

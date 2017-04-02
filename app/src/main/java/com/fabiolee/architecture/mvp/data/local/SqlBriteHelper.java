@@ -1,9 +1,8 @@
 package com.fabiolee.architecture.mvp.data.local;
 
 import android.content.ContentResolver;
-import android.content.ContentValues;
 
-import com.fabiolee.architecture.mvp.data.model.UserModel;
+import com.fabiolee.architecture.mvp.data.model.User;
 import com.squareup.sqlbrite.BriteContentResolver;
 import com.squareup.sqlbrite.SqlBrite;
 
@@ -29,24 +28,15 @@ public class SqlBriteHelper {
                 .wrapContentProvider(contentResolver, Schedulers.io());
     }
 
-    public Observable<List<UserModel>> getUserList() {
-        return briteResolver.createQuery(AppContract.UserEntry.CONTENT_URI,
-                null, null, null, null, false)
-                .mapToList(cursor -> UserModel.create(
-                        cursor.getString(cursor.getColumnIndex(AppContract.UserEntry.COLUMN_NAME_LOGIN)),
-                        cursor.getInt(cursor.getColumnIndex(AppContract.UserEntry.COLUMN_NAME_ID)),
-                        cursor.getString(cursor.getColumnIndex(AppContract.UserEntry.COLUMN_NAME_AVATAR_URL))
-                ));
+    public Observable<List<User>> getUserList() {
+        return briteResolver.createQuery(User.CONTENT_URI, null, null, null, null, false)
+                .mapToList(User.SELECT_ALL_MAPPER::map);
     }
 
-    public Observable<List<UserModel>> setUserList(List<UserModel> userList) {
+    public Observable<List<User>> setUserList(List<User> userList) {
         return Observable.defer(() -> {
-            for (UserModel user : userList) {
-                ContentValues values = new ContentValues();
-                values.put(AppContract.UserEntry.COLUMN_NAME_LOGIN, user.login());
-                values.put(AppContract.UserEntry.COLUMN_NAME_ID, user.id());
-                values.put(AppContract.UserEntry.COLUMN_NAME_AVATAR_URL, user.avatarUrl());
-                contentResolver.insert(AppContract.UserEntry.CONTENT_URI, values);
+            for (User user : userList) {
+                contentResolver.insert(User.CONTENT_URI, user.asContentValues());
             }
             return Observable.just(userList);
         });

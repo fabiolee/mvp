@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.fabiolee.architecture.mvp.data.model.User;
+
 /**
  * @author fabiolee
  */
@@ -26,12 +28,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(AppContract.UserEntry.SQL_CREATE_TABLE);
+        db.execSQL(User.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(AppContract.UserEntry.SQL_DROP_TABLE);
+        db.execSQL(User.DROP_TABLE);
         onCreate(db);
     }
 }

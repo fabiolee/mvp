@@ -10,10 +10,18 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.fabiolee.architecture.mvp.BuildConfig;
+import com.fabiolee.architecture.mvp.data.model.User;
+
 /**
  * @author fabiolee
  */
 public class AppProvider extends ContentProvider {
+    public static final String CONTENT_AUTHORITY = BuildConfig.APPLICATION_ID;
+    public static final String BASE_CONTENT_TYPE = "vnd.android.cursor.dir/";
+    public static final String BASE_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+
     private static final String TAG = AppProvider.class.getSimpleName();
 
     private static final int USER = 0;
@@ -22,8 +30,8 @@ public class AppProvider extends ContentProvider {
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        matcher.addURI(AppContract.CONTENT_AUTHORITY, AppContract.UserEntry.TABLE_NAME, USER);
-        matcher.addURI(AppContract.CONTENT_AUTHORITY, AppContract.UserEntry.TABLE_NAME + "/*", USER_ITEM);
+        matcher.addURI(CONTENT_AUTHORITY, User.TABLE_NAME, USER);
+        matcher.addURI(CONTENT_AUTHORITY, User.TABLE_NAME + "/*", USER_ITEM);
         return matcher;
     }
 
@@ -37,9 +45,9 @@ public class AppProvider extends ContentProvider {
     public String getType(@NonNull Uri uri) {
         switch (URI_MATCHER.match(uri)) {
             case USER:
-                return AppContract.UserEntry.CONTENT_TYPE;
+                return User.CONTENT_TYPE;
             case USER_ITEM:
-                return AppContract.UserEntry.CONTENT_ITEM_TYPE;
+                return User.CONTENT_ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri +
                         " in ContentProvider#getType()");
@@ -71,7 +79,7 @@ public class AppProvider extends ContentProvider {
                 returnCursor = db.query(
                         getTableFromUri(uri),
                         projection,
-                        AppContract.UserEntry.COLUMN_NAME_LOGIN + " = ?",
+                        User.LOGIN + " = ?",
                         where,
                         null,
                         null,
@@ -154,7 +162,7 @@ public class AppProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
             case USER:
             case USER_ITEM:
-                table = AppContract.UserEntry.TABLE_NAME;
+                table = User.TABLE_NAME;
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri +
