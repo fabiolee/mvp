@@ -14,7 +14,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -26,23 +30,29 @@ android {
 }
 
 dependencies {
-    annotationProcessor "com.google.auto.value:auto-value:$rootProject.ext.autoValueVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.auto.value:auto-value:$rootProject.ext.googleAutoValueVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.googleDaggerVersion"
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$rootProject.ext.autoValueGsonVersion"
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
-    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion"
-    compile "io.reactivex:rxandroid:$rootProject.ext.rxandroidVersion"
-    compile "io.reactivex:rxjava:$rootProject.ext.rxjavaVersion"
-    provided "com.google.auto.value:auto-value:$rootProject.ext.autoValueVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.androidSupportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.androidSupportLibraryVersion"
+    compile "com.facebook.stetho:stetho:$rootProject.ext.facebookStethoVersion"
+    compile "com.google.dagger:dagger:$rootProject.ext.googleDaggerVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.squareOkHttpVersion"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.squareRetrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.squareRetrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.squareRetrofitVersion"
+    compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.squareSqlBriteVersion"
+    compile "io.reactivex:rxandroid:$rootProject.ext.reactivexRxAndroidVersion"
+    compile "io.reactivex:rxjava:$rootProject.ext.reactivexRxJavaVersion"
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.squareLeakCanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.squareLeakCanaryVersion"
+    provided "com.google.auto.value:auto-value:$rootProject.ext.googleAutoValueVersion"
     provided "com.ryanharter.auto.value:auto-value-gson:$rootProject.ext.autoValueGsonVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.squareLeakCanaryVersion"
     testCompile "junit:junit:$rootProject.ext.junitVersion"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.androidEspressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    androidTestCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.squareLeakCanaryVersion"
 }

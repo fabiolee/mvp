@@ -2,19 +2,16 @@ package com.fabiolee.architecture.mvp.ui.userlist;
 
 import android.util.Log;
 
-import com.fabiolee.architecture.mvp.data.local.SqlBriteHelper;
 import com.fabiolee.architecture.mvp.data.model.User;
-import com.fabiolee.architecture.mvp.data.remote.GitHubService;
+import com.fabiolee.architecture.mvp.data.repository.UserRepository;
 import com.fabiolee.architecture.mvp.ui.base.BasePresenter;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,18 +20,16 @@ import rx.schedulers.Schedulers;
 public class UserListPresenter extends BasePresenter<UserListView> {
     private static final String TAG = UserListPresenter.class.getSimpleName();
 
-    private final GitHubService gitHubService;
-    private final SqlBriteHelper sqlBriteHelper;
+    private final UserRepository userRepository;
 
     @Inject
-    UserListPresenter(UserListView view, GitHubService gitHubService, SqlBriteHelper sqlBriteHelper) {
+    UserListPresenter(UserListView view, UserRepository userRepository) {
         super(view);
-        this.gitHubService = gitHubService;
-        this.sqlBriteHelper = sqlBriteHelper;
+        this.userRepository = userRepository;
     }
 
     public void loadUserList() {
-        registerSubscription(loadUserListAsObservable()
+        registerSubscription(userRepository.loadUserList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<User>>() {
@@ -54,15 +49,5 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                         }
                     }
                 }));
-    }
-
-    private Observable<List<User>> loadUserListAsObservable() {
-        return gitHubService.getUserList()
-                .concatMap(new Func1<List<User>, Observable<List<User>>>() {
-                    @Override
-                    public Observable<List<User>> call(List<User> userList) {
-                        return sqlBriteHelper.setUserList(userList);
-                    }
-                });
     }
 }

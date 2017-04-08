@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1'
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
@@ -28,14 +28,17 @@ ext {
     buildToolsVersion = '25.0.2'
 
     // App dependencies
-    autoValueVersion = '1.2'
+    androidSupportLibraryVersion = '25.3.1'
+    androidEspressoVersion = '2.2.2'
     autoValueGsonVersion = '0.4.5'
-    daggerVersion = '2.8'
-    espressoVersion = '2.2.2'
+    facebookStethoVersion = '1.4.2'
+    googleAutoValueVersion = '1.2'
+    googleDaggerVersion = '2.8'
     junitVersion = '4.12'
-    retrofitVersion = '2.1.0'
-    rxandroidVersion = '1.2.1'
-    rxjavaVersion = '1.2.4'
-    sqlbriteVersion = '1.1.1'
-    supportLibraryVersion = '25.3.1'
+    reactivexRxAndroidVersion = '1.2.1'
+    reactivexRxJavaVersion = '1.2.4'
+    squareLeakCanaryVersion = '1.5'
+    squareOkHttpVersion = '3.6.0'
+    squareRetrofitVersion = '2.1.0'
+    squareSqlBriteVersion = '1.1.1'
 }

@@ -1,11 +1,14 @@
 package com.fabiolee.architecture.mvp.data.local;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
+import android.support.annotation.NonNull;
 
 import com.fabiolee.architecture.mvp.data.model.User;
 import com.squareup.sqlbrite.BriteContentResolver;
 import com.squareup.sqlbrite.SqlBrite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,12 +36,24 @@ public class SqlBriteHelper {
                 .mapToList(User.SELECT_ALL_MAPPER::map);
     }
 
-    public Observable<List<User>> setUserList(List<User> userList) {
+    public Observable<List<User>> setUserList(@NonNull List<User> userList) {
         return Observable.defer(() -> {
-            for (User user : userList) {
-                contentResolver.insert(User.CONTENT_URI, user.asContentValues());
+            try {
+                ArrayList<ContentProviderOperation> batch = new ArrayList<>();
+                batch.add(ContentProviderOperation
+                        .newDelete(User.CONTENT_URI)
+                        .build());
+                for (User user : userList) {
+                    batch.add(ContentProviderOperation
+                            .newInsert(User.CONTENT_URI)
+                            .withValues(user.asContentValues())
+                            .build());
+                }
+                contentResolver.applyBatch(AppProvider.CONTENT_AUTHORITY, batch);
+                return Observable.just(userList);
+            } catch (Exception e) {
+                return Observable.error(e);
             }
-            return Observable.just(userList);
         });
     }
 }
