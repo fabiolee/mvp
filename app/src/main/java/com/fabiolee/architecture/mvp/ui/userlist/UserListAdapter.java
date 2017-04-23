@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.fabiolee.architecture.mvp.BR;
 import com.fabiolee.architecture.mvp.R;
 import com.fabiolee.architecture.mvp.data.model.User;
-import com.fabiolee.architecture.mvp.databinding.UserListItemBinding;
+import com.fabiolee.architecture.mvp.databinding.ItemUserBinding;
 import com.fabiolee.repository.Repository;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class UserListAdapter extends RecyclerView.Adapter<BindingViewHolder> {
     @Override
     public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        UserListItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.user_list_item, parent, false);
+        ItemUserBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_user, parent, false);
         return new BindingViewHolder(binding);
     }
 
