@@ -1,20 +1,24 @@
 package com.fabiolee.architecture.mvp.ui.userlist;
 
-import android.content.Context;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.fabiolee.architecture.mvp.BR;
 import com.fabiolee.architecture.mvp.R;
 import com.fabiolee.architecture.mvp.data.model.User;
+import com.fabiolee.architecture.mvp.databinding.UserListItemBinding;
+import com.fabiolee.repository.Repository;
 
 import java.util.List;
 
 /**
  * @author fabiolee
  */
-public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
+public class UserListAdapter extends RecyclerView.Adapter<BindingViewHolder> {
     private List<User> userList;
 
     public UserListAdapter(List<User> userList) {
@@ -22,17 +26,17 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
     }
 
     @Override
-    public UserListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.fragment_list_item, parent, false);
-        return new UserListViewHolder(view);
+    public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        UserListItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.user_list_item, parent, false);
+        return new BindingViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(UserListViewHolder holder, int position) {
+    public void onBindViewHolder(BindingViewHolder holder, int position) {
         User user = userList.get(position);
-        holder.loginTextView.setText(user.login());
+        holder.getBinding().setVariable(BR.user, user);
+        holder.getBinding().executePendingBindings();
     }
 
     @Override
@@ -43,5 +47,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListViewHolder> {
     public void setUserList(List<User> userList) {
         this.userList = userList;
         notifyDataSetChanged();
+    }
+
+    @BindingAdapter("imageUrl")
+    public static void loadImage(ImageView view, String url) {
+        Repository.with(view.getContext()).loadImage(url, view);
     }
 }

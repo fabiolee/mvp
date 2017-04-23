@@ -37,6 +37,7 @@ ext {
     junitVersion = '4.12'
     reactivexRxAndroidVersion = '1.2.1'
     reactivexRxJavaVersion = '1.2.4'
+    repositoryVersion = '1.0.2'
     squareLeakCanaryVersion = '1.5'
     squareOkHttpVersion = '3.6.0'
     squareRetrofitVersion = '2.1.0'

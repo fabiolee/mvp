@@ -10,9 +10,11 @@ Android MVP Architecture
 ###### Libraries included:
 
 * [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
+* [Android Data Binding Library](https://developer.android.com/topic/libraries/data-binding/index.html)
 * [Google AutoValue](https://github.com/google/auto/blob/master/value/userguide/index.md) & [AutoValueGson](https://github.com/rharter/auto-value-gson)
 * [Google Dagger](https://google.github.io/dagger/)
 * [ReactiveX RxAndroid](https://github.com/ReactiveX/RxAndroid) & [ReactiveX RxJava](https://github.com/ReactiveX/RxJava)
+* [Repository](https://github.com/fabiolee/repository)
 * [Square Retrofit 2](http://square.github.io/retrofit/)
 * [Square SQLBrite](https://github.com/square/sqlbrite/)
 * [Square SQLDelight](https://github.com/square/sqldelight/)
