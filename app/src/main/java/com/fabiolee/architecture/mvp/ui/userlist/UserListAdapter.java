@@ -19,9 +19,13 @@ import java.util.List;
  * @author fabiolee
  */
 public class UserListAdapter extends RecyclerView.Adapter<BindingViewHolder> {
+    private static final String TAG = UserListAdapter.class.getSimpleName();
+
+    private final UserListPresenter presenter;
     private List<User> userList;
 
-    public UserListAdapter(List<User> userList) {
+    public UserListAdapter(UserListPresenter presenter, List<User> userList) {
+        this.presenter = presenter;
         this.userList = userList;
     }
 
@@ -35,6 +39,7 @@ public class UserListAdapter extends RecyclerView.Adapter<BindingViewHolder> {
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position) {
         User user = userList.get(position);
+        holder.getBinding().setVariable(BR.presenter, presenter);
         holder.getBinding().setVariable(BR.user, user);
         holder.getBinding().executePendingBindings();
     }
@@ -49,7 +54,7 @@ public class UserListAdapter extends RecyclerView.Adapter<BindingViewHolder> {
         notifyDataSetChanged();
     }
 
-    @BindingAdapter("imageUrl")
+    @BindingAdapter({"bind:loadImage"})
     public static void loadImage(ImageView view, String url) {
         Repository.with(view.getContext()).loadImage(url, view);
     }

@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="presenter"
+            type="com.fabiolee.architecture.mvp.ui.userlist.UserListPresenter" />
+
+        <variable
             name="user"
             type="com.fabiolee.architecture.mvp.data.model.User" />
     </data>
@@ -20,7 +24,7 @@
             android:layout_height="80dp"
             android:background="@color/grey"
             android:contentDescription="@null"
-            app:imageUrl="@{user.avatar_url}"/>
+            app:loadImage="@{user.avatar_url}" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -29,7 +33,7 @@
             android:layout_toEndOf="@id/iv_avatar"
             android:layout_toRightOf="@id/iv_avatar"
             android:padding="8dp"
-            android:text="@{user.login}"
+            android:text="@{@string/lbl_title(user.login, user.id)}"
             android:textStyle="bold" />
 
         <TextView
@@ -39,8 +43,9 @@
             android:layout_below="@id/tv_title"
             android:layout_toEndOf="@id/iv_avatar"
             android:layout_toRightOf="@id/iv_avatar"
+            android:onClick="@{() -> presenter.openWebsite(user.html_url)}"
             android:padding="8dp"
-            android:text="@{String.valueOf(user.id)}" />
+            android:text="@{user.html_url}" />
 
     </RelativeLayout>
 </layout>

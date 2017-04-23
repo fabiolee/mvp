@@ -50,4 +50,8 @@ public class UserListPresenter extends BasePresenter<UserListView> {
                     }
                 }));
     }
+
+    public void openWebsite(String url) {
+        getView().openWebsite(url);
+    }
 }

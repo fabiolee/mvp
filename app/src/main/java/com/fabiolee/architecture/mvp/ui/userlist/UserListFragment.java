@@ -1,5 +1,7 @@
 package com.fabiolee.architecture.mvp.ui.userlist;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -62,12 +64,18 @@ public class UserListFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
+    public void openWebsite(String url) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }
+
+    @Override
     public void updateUserList(List<User> userList) {
         userListAdapter.setUserList(userList);
     }
 
     private void initContent() {
-        userListAdapter = new UserListAdapter(Collections.emptyList());
+        userListAdapter = new UserListAdapter(presenter, Collections.emptyList());
         presenter.loadUserList();
     }
 }

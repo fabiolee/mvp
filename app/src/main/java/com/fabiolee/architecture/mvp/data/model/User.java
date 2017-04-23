@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 
 import com.fabiolee.architecture.mvp.data.local.AppProvider;
+import com.fabiolee.architecture.mvp.data.local.SqlDelightHelper;
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -23,7 +24,12 @@ public abstract class User implements UserModel {
             .build();
 
     public static final Factory<User> FACTORY = new Factory<>(
-            (_id, login, id, avatarUrl) -> new AutoValue_User(null, login, id, avatarUrl));
+            (_id, login, id, avatarUrl, url, htmlUrl, type, siteAdmin, name, company, blog,
+             location, email, hireable, bio, followers, following, createdAt, updatedAt) ->
+                    new AutoValue_User(null, login, id, avatarUrl, url, htmlUrl, type, siteAdmin,
+                            name, company, blog, location, email, hireable, bio, followers,
+                            following, createdAt, updatedAt),
+            SqlDelightHelper.DATE_ADAPTER, SqlDelightHelper.DATE_ADAPTER);
     public static final RowMapper<User> SELECT_ALL_MAPPER = FACTORY.selectAllMapper();
 
     public static TypeAdapter<User> typeAdapter(Gson gson) {
@@ -31,6 +37,7 @@ public abstract class User implements UserModel {
     }
 
     public ContentValues asContentValues() {
-        return new Marshal(this).asContentValues();
+        return new Marshal(this, SqlDelightHelper.DATE_ADAPTER, SqlDelightHelper.DATE_ADAPTER)
+                .asContentValues();
     }
 }

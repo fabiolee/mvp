@@ -9,5 +9,7 @@ import java.util.List;
  * @author fabiolee
  */
 public interface UserListView extends BaseView {
+    void openWebsite(String url);
+
     void updateUserList(List<User> userList);
 }

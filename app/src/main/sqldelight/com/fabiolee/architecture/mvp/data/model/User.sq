@@ -1,9 +1,26 @@
+import java.util.Date;
+
 CREATE TABLE IF NOT EXISTS user (
     _id INTEGER PRIMARY KEY AUTOINCREMENT,
     login TEXT NOT NULL,
-    id INTEGER NOT NULL,
+    id INTEGER,
     avatar_url TEXT,
-    UNIQUE (login) ON CONFLICT REPLACE
+    url TEXT NOT NULL,
+    html_url TEXT,
+    type TEXT,
+    site_admin INTEGER AS Boolean,
+    name TEXT,
+    company TEXT,
+    blog TEXT,
+    location TEXT,
+    email TEXT,
+    hireable TEXT,
+    bio TEXT,
+    followers INTEGER,
+    following INTEGER,
+    created_at TEXT AS Date,
+    updated_at TEXT AS Date,
+    UNIQUE (login)
 );
 
 drop_table:
@@ -14,5 +31,6 @@ SELECT *
 FROM user;
 
 insertRow:
-INSERT INTO user(login, id, avatar_url)
-VALUES (?, ?, ?);
+INSERT INTO user(login, id, avatar_url, url, html_url, type, site_admin, name, company, blog,
+location, email, hireable, bio, followers, following, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
