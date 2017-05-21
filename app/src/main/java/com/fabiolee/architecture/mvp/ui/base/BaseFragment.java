@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 
 import com.fabiolee.architecture.mvp.injection.Injectable;
 
+import dagger.android.support.AndroidSupportInjection;
+
 /**
  * @author fabiolee
  */
@@ -17,6 +19,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        AndroidSupportInjection.inject(this);
     }
 
     @Override
