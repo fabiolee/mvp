@@ -1,13 +1,13 @@
 package com.fabiolee.architecture.mvp.injection.component;
 
-import android.content.ContentResolver;
-import android.content.Context;
+import android.app.Application;
 
-import com.fabiolee.architecture.mvp.data.remote.GitHubService;
+import com.fabiolee.architecture.mvp.AppApplication;
 import com.fabiolee.architecture.mvp.injection.module.AppModule;
 
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
 
 /**
@@ -16,9 +16,13 @@ import dagger.Component;
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
-    Context context();
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
 
-    ContentResolver contentResolver();
+        AppComponent build();
+    }
 
-    GitHubService gitHubService();
+    void inject(AppApplication application);
 }

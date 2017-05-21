@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.fabiolee.architecture.mvp.R;
 import com.fabiolee.architecture.mvp.data.model.User;
-import com.fabiolee.architecture.mvp.injection.AppApplication;
 import com.fabiolee.architecture.mvp.ui.base.BaseFragment;
 
 import java.util.Collections;
@@ -47,15 +46,6 @@ public class UserListFragment extends BaseFragment<UserListPresenter> implements
         userListRecyclerView = (RecyclerView) view.findViewById(R.id.rv_user_list);
         userListRecyclerView.setAdapter(userListAdapter);
         return view;
-    }
-
-    @Override
-    protected void injectDependency() {
-        DaggerUserListComponent.builder()
-                .appComponent(AppApplication.get(getActivity()).getAppComponent())
-                .userListPresenterModule(new UserListPresenterModule(this))
-                .build()
-                .inject(this);
     }
 
     @Override

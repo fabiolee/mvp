@@ -34,6 +34,7 @@ android {
 
 dependencies {
     annotationProcessor "com.google.auto.value:auto-value:$rootProject.ext.googleAutoValueVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.googleDaggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.googleDaggerVersion"
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$rootProject.ext.autoValueGsonVersion"
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -42,6 +43,8 @@ dependencies {
     compile "com.fabiolee.repository:repository:$rootProject.ext.repositoryVersion"
     compile "com.facebook.stetho:stetho:$rootProject.ext.facebookStethoVersion"
     compile "com.google.dagger:dagger:$rootProject.ext.googleDaggerVersion"
+    compile "com.google.dagger:dagger-android:$rootProject.ext.googleDaggerVersion"
+    compile "com.google.dagger:dagger-android-support:$rootProject.ext.googleDaggerVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.squareOkHttpVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.squareRetrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.squareRetrofitVersion"
@@ -57,6 +60,7 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.androidEspressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
     androidTestCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.squareLeakCanaryVersion"
 }

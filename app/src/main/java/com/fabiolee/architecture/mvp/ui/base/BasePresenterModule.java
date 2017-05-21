@@ -8,14 +8,8 @@ import dagger.Provides;
  */
 @Module
 public abstract class BasePresenterModule<V extends BaseView> {
-    private V view;
-
-    public BasePresenterModule(V view) {
-        this.view = view;
-    }
-
     @Provides
-    public V provideView() {
+    public V provideView(V view) {
         return view;
     }
 }

@@ -1,5 +1,6 @@
 package com.fabiolee.architecture.mvp.injection.module;
 
+import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
 
@@ -8,25 +9,23 @@ import com.fabiolee.architecture.mvp.data.remote.RetrofitHelper;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * @author fabiolee
  */
-@Module
+@Module(includes = {
+        AndroidSupportInjectionModule.class,
+        UiModule.class
+})
 public class AppModule {
-    private final Context context;
-
-    public AppModule(Context context) {
-        this.context = context;
+    @Provides
+    Context provideContext(Application application) {
+        return application;
     }
 
     @Provides
-    Context provideContext() {
-        return context;
-    }
-
-    @Provides
-    ContentResolver provideContentResolver() {
+    ContentResolver provideContentResolver(Context context) {
         return context.getContentResolver();
     }
 
