@@ -14,10 +14,7 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     # Specify at least one system image, if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-25
-
-before_install:
-  - yes | sdkmanager "platforms;android-25"
+    - sys-img-armeabi-v7a-android-26
 
 script:
   - ./gradlew clean assemble
